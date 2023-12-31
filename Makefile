@@ -2,7 +2,7 @@ run:
 	python -m src
 
 run_server:
-	uvicorn src.__main__:app --reload
+	uvicorn src.__main__:app --reload --port=5000
 
 test: export RUN_INTEGRATION_TESTS = 0
 test:
