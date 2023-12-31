@@ -1,6 +1,9 @@
 run:
 	python -m src
 
+run_server:
+	uvicorn src.__main__:app --reload
+
 test: export RUN_INTEGRATION_TESTS = 0
 test:
 	coverage run --source=./src -m pytest tests/

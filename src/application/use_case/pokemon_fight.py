@@ -18,7 +18,7 @@ class PokemonFight:
             winner = self._select_winner(battle.pokemon_a, battle.pokemon_b)
             battle.winner = winner
             battle.fought = True
-        return True
+        return battles
 
     def _select_winner(self, pokemon_a: Pokemon, pokemon_b: Pokemon):
         contestends = [pokemon_a, pokemon_b]
