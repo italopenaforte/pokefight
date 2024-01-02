@@ -1,7 +1,6 @@
 import requests
 
 from src.application.factory.erros import PokemonNotFound
-from src.domain.pokemon import Pokemon
 
 
 def pokemon_factory(name: str):
@@ -9,5 +8,5 @@ def pokemon_factory(name: str):
 
     if response.status_code == 200:
         payload = response.json()
-        return Pokemon(name=name, base_experience=payload.get("base_experience"))
+        return {"name": name, "base_experience": payload.get("base_experience")}
     raise PokemonNotFound()

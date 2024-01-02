@@ -1,3 +1,4 @@
+import logging
 from pprint import pprint
 
 from fastapi import FastAPI
@@ -25,13 +26,12 @@ fight_repository = FightRepository()
 def create_pokemon_fight(fight: Fight):
     try:
         create_pokemon_fight_use_case = CreatePokemonFight(fight_repository)
-        return create_pokemon_fight_use_case.execute(
-            input=Input(fight.pokemon_a, fight.pokemon_b)
-        )
+        return create_pokemon_fight_use_case.execute(fight.pokemon_a, fight.pokemon_b)
     except PokemonNotFound as e:
-        return e, 400
+        return str(e), 400
     except Exception as e:
-        return e, 500
+        logging.exception(str(e))
+        return "Internal Server Error", 500
 
 
 @app.get("/pokemon/fight")

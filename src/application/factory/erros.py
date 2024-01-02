@@ -2,4 +2,4 @@ class PokemonNotFound(Exception):
     def __init__(
         self,
     ):
-        self.super("Pokemon Not Found")
+        super().__init__("Pokemon Not Found")
