@@ -1,5 +1,13 @@
+import requests
+
+from src.application.factory.erros import PokemonNotFound
 from src.domain.pokemon import Pokemon
 
 
 def pokemon_factory(name: str):
-    return Pokemon(name=name, base_experience=60)
+    response = requests.get(url=f"https://pokeapi.co/api/v2/pokemon/{name}", timeout=3)
+
+    if response.status_code == 200:
+        payload = response.json()
+        return Pokemon(name=name, base_experience=payload.get("base_experience"))
+    raise PokemonNotFound()
